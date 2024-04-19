@@ -1,0 +1,167 @@
+templates:
+  defaults:
+    - name: xml
+    - name: markdown
+    - name: text
+  custom:
+    - name: example
+    - path: examples/example_template
+question_modes:
+  - name: "before"
+  - name: "after"
+  - name: "repeated"
+doc_modes:
+  - name: "relevant_first"
+  - name: "random"
+  - name: "relevant_last"
+  - name: "no_context"
+  - name: "only_relevant"
+  - name: "special"
+models:
+  - name: "Qwen/Qwen1.5-7B-Chat"
+    provider: "together"
+    max_context: 32000
+  - name: "meta-llama/Llama-3-8b-chat-hf"
+    provider: "together"
+    max_context: 8000
+  - name: "google/gemma-7b-it"
+    provider: "together"
+    max_context: 8000
+  - name: "mistralai/Mistral-7B-Instruct-v0.2"
+    provider: "together"
+    max_context: 32000
+  - name: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    provider: "together"
+    max_context: 32000
+  - name: "NousResearch/Nous-Hermes-2-Mistral-7B-DPO"
+    provider: "together"
+    max_context: 32000
+  - name: "reka-flash"
+    provider: "reka"
+    max_context: 100000
+  - name: "reka-edge"
+    provider: "reka"
+    max_context: 100000
+  - name: "gpt-35-turbo-16k"
+    provider: "openai"
+    max_context: 16000
+  - name: "gpt4-1106-preview"
+    provider: "openai"
+    max_context: 16000
+  - name: "claude-3-opus-20240229"
+    provider: "claude"
+    max_context: 100000
+  - name: "claude-3-sonnet-20240229"
+    provider: "claude"
+    max_context: 100000
+  - name: "claude-3-haiku-20240307"
+    provider: "claude"
+    max_context: 100000
+  - name: "command-r"
+    provider: "cohere"
+    max_context: 100000
+    has_special_mode: true
+  # - name: "microsoft/Phi-3-mini-128k-instruct"
+  #   provider: "hf_transformers"
+  #   max_context: 100000
+eval_sets:
+  - name: "bsard"
+    lang: "french"
+    noise_format: "ids"
+    noise_key: "noise_article_ids"
+    noise_sample: 5
+    relevant_format: "ids"
+    relevant_key: "relevant_doc_ids"
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    huggingface: 
+      questions: 
+        repo: "bclavie/STITCH"
+        subset: "bsard_questions"
+        split: "test"
+      requires_corpus: true
+      corpus:
+        repo: "bclavie/STITCH"
+        id_key: "id"
+        content_key: "content"
+        subset: "bsard_corpus"
+        split: "test"
+  - name: "biomrc"
+    lang: "english"
+    noise_format: "ids"
+    noise_key: "noise_ids"
+    noise_sample: "all"
+    relevant_format: "text"
+    relevant_key: "document"
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    huggingface: 
+      questions: 
+        repo: "bclavie/STITCH"
+        subset: "biomrc_questions"
+        split: "test"
+      requires_corpus: true
+      corpus:
+        repo: "bclavie/STITCH"
+        id_key: "id"
+        content_key: "content"
+        subset: "biomrc_corpus"
+        split: "test"
+  - name: "proxima"
+    lang: "english"
+    noise_format: "full_document"
+    noise_key: "full_document"
+    noise_sample: "all"
+    relevant_format: "text"
+    relevant_key: "document"
+    valid_doc_modes: ["random", "only_relevant", "special"]
+    huggingface: 
+      questions: 
+        repo: "bclavie/STITCH"
+        subset: "proxima_questions"
+        split: "test"
+      requires_corpus: false
+      corpus:
+        repo: "bclavie/STITCH"
+        id_key: "id"
+        content_key: "content"
+        subset: "proxima_corpus"
+        split: "test"
+  - name: "bsard_known"
+    lang: "french"
+    noise_format: "ids"
+    noise_key: "noise_article_ids"
+    noise_sample: 5
+    relevant_format: "ids"
+    relevant_key: "relevant_doc_ids"
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    huggingface: 
+      questions: 
+        repo: "bclavie/STITCH"
+        subset: "bsard_known_questions"
+        split: "test"
+      requires_corpus: true
+      corpus:
+        repo: "bclavie/STITCH"
+        id_key: "id"
+        content_key: "content"
+        subset: "bsard_corpus"
+        split: "test"
+  - name: "biomrc"
+    lang: "english"
+    noise_format: "ids"
+    noise_key: "noise_ids"
+    noise_sample: "all"
+    relevant_format: "text"
+    relevant_key: "document"
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    huggingface: 
+      questions: 
+        repo: "bclavie/STITCH"
+        subset: "biomrc_known_questions"
+        split: "test"
+      requires_corpus: true
+      corpus:
+        repo: "bclavie/STITCH"
+        id_key: "id"
+        content_key: "content"
+        subset: "biomrc_corpus"
+        split: "test"

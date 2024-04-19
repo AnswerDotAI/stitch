@@ -1,0 +1,10 @@
+together
+anthropic
+openai
+typer
+datasets
+srsly
+python-dotenv
+pydantic
+tqdm
+pyyaml
