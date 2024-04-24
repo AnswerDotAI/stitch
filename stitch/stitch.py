@@ -31,7 +31,7 @@ def eval_on_dataset(
         if evalset.relevant_format == "ids" and evalset.noise_format == "ids":
             doc_ids = q[evalset.relevant_key]
             noise_docs = q[evalset.noise_key]
-            if doc_formatting not in ["only_relevant", "no_context"]:
+            if doc_formatting not in ["only_relevant", "no_context", "special"]:
                 if evalset.noise_sample != "all":
                     random.seed(42)
                     noise_docs = random.sample(noise_docs, evalset.noise_sample)
@@ -49,7 +49,7 @@ def eval_on_dataset(
         elif evalset.relevant_format == "text" and evalset.noise_format == "ids":
             docs = [q[evalset.relevant_key]]
             noise_docs = q[evalset.noise_key]
-            if doc_formatting not in ["only_relevant", "no_context"]:
+            if doc_formatting not in ["only_relevant", "no_context", "special"]:
                 if doc_formatting == "relevant_first":
                     docs = docs + [evalset.corpus_mapping[f"{id}_{dataset[0]['subset'].split('_')[0]}"] for id in noise_docs]
                 else:
@@ -78,9 +78,6 @@ def eval_on_dataset(
 
 
         if doc_formatting == "special":
-            # if not model.has_special_mode:
-                # print("Special formatting only available for Cohere models, skipping...")
-                # break
             prompt = template.build_prompt_without_documents(
                 question=q["question"],
                 answers=q["answers_string"],
@@ -88,7 +85,7 @@ def eval_on_dataset(
             )
             documents = [{"title": f"Document {i}", "text": doc} for i, doc in enumerate(docs, start=1)]
 
-        if doc_formatting == "no_context":
+        elif doc_formatting == "no_context":
             prompt = template.build_prompt_without_documents(
                 question=q["question"],
                 answers=q["answers_string"],
