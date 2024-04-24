@@ -75,12 +75,12 @@ eval_sets:
     valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
     huggingface: 
       questions: 
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         subset: "bsard_questions"
         split: "test"
       requires_corpus: true
       corpus:
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         id_key: "id"
         content_key: "content"
         subset: "bsard_corpus"
@@ -95,12 +95,12 @@ eval_sets:
     valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
     huggingface: 
       questions: 
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         subset: "biomrc_questions"
         split: "test"
       requires_corpus: true
       corpus:
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         id_key: "id"
         content_key: "content"
         subset: "biomrc_corpus"
@@ -115,12 +115,12 @@ eval_sets:
     valid_doc_modes: ["random", "only_relevant", "special"]
     huggingface: 
       questions: 
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         subset: "proxima_questions"
         split: "test"
       requires_corpus: false
       corpus:
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         id_key: "id"
         content_key: "content"
         subset: "proxima_corpus"
@@ -135,12 +135,12 @@ eval_sets:
     valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
     huggingface: 
       questions: 
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         subset: "bsard_known_questions"
         split: "test"
       requires_corpus: true
       corpus:
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         id_key: "id"
         content_key: "content"
         subset: "bsard_corpus"
@@ -155,12 +155,12 @@ eval_sets:
     valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
     huggingface: 
       questions: 
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         subset: "biomrc_known_questions"
         split: "test"
       requires_corpus: true
       corpus:
-        repo: "bclavie/STITCH"
+        repo: "answerdotai/STITCH"
         id_key: "id"
         content_key: "content"
         subset: "biomrc_corpus"
