@@ -145,14 +145,14 @@ eval_sets:
         content_key: "content"
         subset: "bsard_corpus"
         split: "test"
-  - name: "biomrc"
+  - name: "biomrc_hard"
     lang: "english"
     noise_format: "ids"
     noise_key: "noise_ids"
     noise_sample: "all"
     relevant_format: "text"
     relevant_key: "document"
-    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant"]
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
