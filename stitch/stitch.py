@@ -31,7 +31,7 @@ def eval_on_dataset(
         if evalset.relevant_format == "ids" and evalset.noise_format == "ids":
             doc_ids = q[evalset.relevant_key]
             noise_docs = q[evalset.noise_key]
-            if doc_formatting not in ["only_relevant", "no_context", "special"]:
+            if doc_formatting not in ["only_relevant", "no_context"]:
                 if evalset.noise_sample != "all":
                     random.seed(42)
                     noise_docs = random.sample(noise_docs, evalset.noise_sample)
@@ -49,7 +49,7 @@ def eval_on_dataset(
         elif evalset.relevant_format == "text" and evalset.noise_format == "ids":
             docs = [q[evalset.relevant_key]]
             noise_docs = q[evalset.noise_key]
-            if doc_formatting not in ["only_relevant", "no_context", "special"]:
+            if doc_formatting not in ["only_relevant", "no_context"]:
                 if doc_formatting == "relevant_first":
                     docs = docs + [evalset.corpus_mapping[f"{id}_{dataset[0]['subset'].split('_')[0]}"] for id in noise_docs]
                 else:
@@ -77,14 +77,13 @@ def eval_on_dataset(
             document_string = f"{template.doc_separator_start.format(doc_id=1)}\n{docs[0]}\n{template.doc_separator_end}"
 
 
-        if doc_formatting == "special":
+        if question_mode == "special" and doc_formatting != "no_context":
             prompt = template.build_prompt_without_documents(
                 question=q["question"],
                 answers=q["answers_string"],
                 lang=lang,
             )
             documents = [{"title": f"Document {i}", "text": doc} for i, doc in enumerate(docs, start=1)]
-
         elif doc_formatting == "no_context":
             prompt = template.build_prompt_without_documents(
                 question=q["question"],
@@ -103,7 +102,7 @@ def eval_on_dataset(
         # Ensure there are no extra newlines adding noise
         prompt = prompt.replace("\n\n\n", "\n\n")
         try:
-            if doc_formatting == "special":
+            if question_mode == "special":
                 print('Special cohere call...', flush=True)
                 output = model.predict(prompt.strip(), documents=documents)
             else:

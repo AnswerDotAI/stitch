@@ -10,9 +10,9 @@ from stitch.pydantic_objects import Model, EvalSet
 from stitch.data_utils import load_evalset, get_corpus_mapping
 
 SUPPORTED_DOC_MODES = [
-        "relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"
+        "relevant_first", "random", "relevant_last", "no_context", "only_relevant",
 ]
-SUPPORTED_QUESTION_MODES = ["before", "after", "repeated", "before_group_q_and_a"]
+SUPPORTED_QUESTION_MODES = ["before", "after", "repeated",  "special"]
 
 
 def main(

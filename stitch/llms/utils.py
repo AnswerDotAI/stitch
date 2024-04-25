@@ -5,6 +5,7 @@ from stitch.llms._together import together_predictor
 from stitch.llms._reka import reka_predictor
 from stitch.llms._cohere import cohere_predictor
 from stitch.llms._hf_transformers import transformers_predictor
+from stitch.llms._vllm import vllm_predictor
 
 def get_predictor_fn(model_name: str, provider: str) -> Callable:
     match provider:
@@ -20,5 +21,7 @@ def get_predictor_fn(model_name: str, provider: str) -> Callable:
             return cohere_predictor(model_name)
         case "hf_transformers":
             return transformers_predictor(model_name)
+        case "vllm":
+            return vllm_predictor(model_name)
         case other:
             raise ValueError(f"Unknown provider: {other}")

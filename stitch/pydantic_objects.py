@@ -146,10 +146,10 @@ class Results(BaseModel):
     def export(self, base_path: str = "results/"):
         if not os.path.exists(f"{base_path}{self.predictor_name.replace('/', '-')}"):
             os.makedirs(
-                f"{base_path}{self.predictor_name.replace('/', '-')}", exist_ok=True
+                f"{base_path}/{self.predictor_name.replace('/', '-')}", exist_ok=True
             )
 
         srsly.write_json(
-            f"results/{self.predictor_name.replace('/', '-')}/{self.dataset}_{self.template}_{self.question_mode}_{self.doc_formatting}.json",
+            f"{base_path}/{self.predictor_name.replace('/', '-')}/{self.dataset}_{self.template}_{self.question_mode}_{self.doc_formatting}.json",
             self.dict(),
         )

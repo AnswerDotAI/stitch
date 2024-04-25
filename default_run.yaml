@@ -10,13 +10,13 @@ question_modes:
   - name: "before"
   - name: "after"
   - name: "repeated"
+  - name: "special"
 doc_modes:
   - name: "relevant_first"
   - name: "random"
   - name: "relevant_last"
   - name: "no_context"
   - name: "only_relevant"
-  - name: "special"
 models:
   - name: "Qwen/Qwen1.5-7B-Chat"
     provider: "together"
@@ -61,9 +61,9 @@ models:
     provider: "cohere"
     max_context: 100000
     has_special_mode: true
-  # - name: "microsoft/Phi-3-mini-128k-instruct"
-  #   provider: "hf_transformers"
-  #   max_context: 100000
+  - name: "microsoft/Phi-3-mini-128k-instruct"
+    provider: "vllm"
+    max_context: 100000
 eval_sets:
   - name: "bsard"
     lang: "french"
@@ -72,7 +72,7 @@ eval_sets:
     noise_sample: 5
     relevant_format: "ids"
     relevant_key: "relevant_doc_ids"
-    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
@@ -92,7 +92,7 @@ eval_sets:
     noise_sample: "all"
     relevant_format: "text"
     relevant_key: "document"
-    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
@@ -112,7 +112,7 @@ eval_sets:
     noise_sample: "all"
     relevant_format: "text"
     relevant_key: "document"
-    valid_doc_modes: ["random", "only_relevant", "special"]
+    valid_doc_modes: ["random", "only_relevant"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
@@ -132,7 +132,7 @@ eval_sets:
     noise_sample: 5
     relevant_format: "ids"
     relevant_key: "relevant_doc_ids"
-    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
@@ -152,7 +152,7 @@ eval_sets:
     noise_sample: "all"
     relevant_format: "text"
     relevant_key: "document"
-    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant", "special"]
+    valid_doc_modes: ["relevant_first", "random", "relevant_last", "no_context", "only_relevant"]
     huggingface: 
       questions: 
         repo: "answerdotai/STITCH"
