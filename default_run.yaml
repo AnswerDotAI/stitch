@@ -145,7 +145,7 @@ eval_sets:
         content_key: "content"
         subset: "bsard_corpus"
         split: "test"
-  - name: "biomrc_hard"
+  - name: "biomrc_known"
     lang: "english"
     noise_format: "ids"
     noise_key: "noise_ids"
